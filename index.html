@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Runs before anything below paints. Sets the flag the CSS intro-hiding
+     rules below key off of, so a JS-enabled browser never has a frame
+     where the un-hidden nav/hero/header-logo state is visible before
+     script.js takes over — see the "INTRO" CSS block and script.js's own
+     INTRO module for the two ends of this handoff. True no-JS browsers
+     never run this, so .js-intro is simply absent and every element it
+     would have hidden stays at its normal, fully-visible default. -->
+<script>document.documentElement.classList.add('js-intro');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SocialWox — Technology &amp; Digital Design Office</title>
+<meta name="description" content="SocialWox is a private technology and digital design office. We design and build websites and digital experiences for businesses across every industry.">
+<meta name="theme-color" content="#163A5F">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="SocialWox — Technology & Digital Design Office">
+<meta property="og:description" content="A private technology office designing and building digital presences for businesses across every industry.">
+<meta property="og:image" content="/assets/deco-skyline-red.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SocialWox — Technology & Digital Design Office">
+<meta name="twitter:description" content="A private technology office designing and building digital presences for businesses across every industry.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23163A5F'/%3E%3Cpath d='M20 46 L20 30 L32 18 L44 30 L44 46' fill='none' stroke='%23F3EFE6' stroke-width='3'/%3E%3Crect x='29' y='34' width='6' height='12' fill='%23B3263E'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+<noscript><style>.intro-stage{ height:auto !important; overflow:visible !important; }</style></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SocialWox",
+  "description": "Technology and digital design office building websites and digital presences for businesses across every industry.",
+  "serviceType": ["Web Design", "Web Development", "Digital Presence Management"],
+  "areaServed": "Worldwide"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ INTRO — pinned entry sequence ============
+     One logo element travels from centered/full-screen to its header
+     position as the user scrolls; nav chrome and hero content build in
+     around it. Measured/transformed by script.js (GSAP ScrollTrigger),
+     not hardcoded positions — see the intro module for the FLIP math.
+     The elements this sequence reveals are hidden by CSS the instant
+     .js-intro is present (see the <script> at the top of <head> and the
+     "INTRO" CSS block in style.css) so nothing flashes fully-visible
+     before script.js runs, then handed off to GSAP's own inline styles
+     once it does. Falls back to the plain, fully-visible nav+hero below
+     for prefers-reduced-motion / no-JS — reduced-motion removes
+     .js-intro again (see script.js), and true no-JS never adds it in
+     the first place. ============================== -->
+<div class="intro-pin" id="introPin">
+  <div class="intro-stage" id="introStage">
+
+    <!-- ============ NAV ============ -->
+    <header class="nav" id="nav">
+      <div class="nav__bg" id="navBg" aria-hidden="true"></div>
+      <div class="nav__inner">
+        <nav class="nav__group nav__group--left" aria-label="Primary">
+          <a href="#services">Services</a>
+        </nav>
+
+        <a href="#top" class="nav__logo" id="navLogo" aria-label="SocialWox — home">
+          <img src="assets/logo-nav-wordmark.png" alt="SocialWox" width="399" height="124" id="navLogoImg">
+        </a>
+
+        <div class="nav__group nav__group--right">
+          <a href="#approach">Approach</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact" class="btn btn--primary btn--nav">Start a project</a>
+        </div>
+
+        <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav__mobile" id="navMobile">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn--primary">Start a project</a>
+      </div>
+    </header>
+
+    <!-- ============ 01 HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero__frame" id="heroFrame" aria-hidden="true">
+        <div class="hero__lines">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow" id="heroEyebrow">Technology &amp; Digital Design Office</p>
+
+        <h1 class="hero__headline" id="heroHeadline">
+          <span class="reveal-word"><span>Digital</span></span>
+          <span class="reveal-word"><span>experiences,</span></span>
+          <span class="reveal-word"><span><em>engineered.</em></span></span>
+        </h1>
+
+        <div class="hero__foot">
+          <p class="hero__sub" id="heroSub">SocialWox is a private technology office designing and building websites and digital experiences — for restaurants, retailers, startups and established companies alike.</p>
+          <div class="hero__cta" id="heroCta">
+            <a href="#services" class="btn btn--primary">See our services</a>
+            <a href="#contact" class="btn btn--ghost">Start a project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ 02 INTRODUCTION ============ -->
+
+  <section class="intro">
+    <span class="intro__watermark" aria-hidden="true">SocialWox</span>
+    <div class="intro__grid">
+      <p class="intro__mark reveal-fade">Since day one</p>
+      <h2 class="intro__statement reveal-fade">A business should look as good online as it does in real life.</h2>
+      <div class="intro__body reveal-fade">
+        <p>SocialWox designs and builds websites for businesses that want to be taken seriously the moment someone lands on their page. We're not a template shop, and we don't specialise in one type of client — restaurants, retailers, studios, startups and long-running companies all come to us for the same reason: a site built with intent, not assembled from a kit.</p>
+        <p>Every project starts from the business itself — what it sells, who it serves, how it wants to be seen — and is built into a structure of typography, imagery and motion that carries that identity through every screen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="section-head">
+      <h2 class="section-head__title reveal-fade">What we do</h2>
+      <p class="section-head__desc reveal-fade">Three ways we work with businesses — most start with the first.</p>
+    </div>
+
+    <div class="services__body">
+      <div class="services__list">
+        <article class="service reveal-fade">
+          <div class="service__num">01</div>
+          <div class="service__body">
+            <h3>Web design &amp; development</h3>
+            <p>Our primary service. A custom-designed, hand-built website — not a theme — engineered for speed, structured for search, and built to convert visitors into customers.</p>
+            <ul class="service__tags">
+              <li>Custom design</li><li>Development</li><li>Responsive builds</li><li>Performance</li><li>SEO foundations</li><li>Hosting &amp; deployment</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service reveal-fade">
+          <div class="service__num">02</div>
+          <div class="service__body">
+            <h3>Digital presence</h3>
+            <p>Support beyond the website — keeping a business's presentation consistent everywhere it shows up online.</p>
+            <ul class="service__tags">
+              <li>Brand presentation</li><li>Social media design</li><li>Content direction</li><li>Digital consistency</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service reveal-fade">
+          <div class="service__num">03</div>
+          <div class="service__body">
+            <h3>Custom digital work</h3>
+            <p>For the projects that don't fit a standard package. If it's digital and your business needs it, we'll scope it and build it.</p>
+            <ul class="service__tags">
+              <li>Bespoke builds</li><li>Integrations</li><li>Ongoing engagements</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <aside class="services__visual reveal-fade" aria-hidden="true">
+        <img src="assets/what-we-do.jpg" alt="" loading="lazy">
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 04 APPROACH ============ -->
+  <section class="approach" id="approach">
+    <div class="section-head">
+      <h2 class="section-head__title reveal-fade">Our approach</h2>
+      <p class="section-head__desc reveal-fade">The same four stages, on every project, regardless of industry.</p>
+    </div>
+
+    <div class="approach__system">
+      <div class="approach__track" aria-hidden="true"></div>
+
+      <div class="approach__step reveal-fade">
+        <span class="approach__num">01</span>
+        <h3>Observe</h3>
+        <p>We study the business, its customers and the field it competes in before a single pixel is placed.</p>
+      </div>
+      <div class="approach__step reveal-fade">
+        <span class="approach__num">02</span>
+        <h3>Define</h3>
+        <p>We set the visual and digital direction — typography, structure, tone — and agree it before building.</p>
+      </div>
+      <div class="approach__step reveal-fade">
+        <span class="approach__num">03</span>
+        <h3>Build</h3>
+        <p>We design and develop in parallel, so what you review is close to what will actually ship.</p>
+      </div>
+      <div class="approach__step reveal-fade">
+        <span class="approach__num">04</span>
+        <h3>Refine</h3>
+        <p>We tune performance, motion and detail until the site holds up as well under scrutiny as at first glance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 WHY SOCIALWOX — PINNED SCROLL EXPERIENCE ============
+       One continuous, scroll-scrubbed composition (GSAP ScrollTrigger).
+       The stage stays pinned for the full 950vh timeline below; scroll
+       position drives every transform directly, frame by frame — nothing
+       here plays on a clock, and no stage is a self-contained "section":
+       each one enters through the exit of the one before it. Seven stages,
+       one evolving environment. Falls back to a plain stacked reveal for
+       prefers-reduced-motion and narrow screens (see script.js / CSS).
+       ============================================================== -->
+  <section class="why" id="why">
+    <div class="why-exp" id="whyExp">
+      <div class="why-exp__stage" id="whyStage">
+        <div class="why-exp__bg" aria-hidden="true"></div>
+        <div class="why-exp__grid" aria-hidden="true"></div>
+
+        <!-- Small persistent mark — appears once the intro breaks apart,
+             stays through the whole experience as a quiet anchor. -->
+        <p class="why-exp__lockup" id="whyLockup" aria-hidden="true">Why SocialWox</p>
+
+        <div class="why-exp__field" id="whyField">
+
+          <!-- Stage 1 — Intro -->
+          <div class="ws ws--intro" data-stage="1">
+            <h2 class="ws__intro">
+              <span class="ws__intro-line ws__intro-line--a" id="wsIntroA">Why</span>
+              <span class="ws__intro-line ws__intro-line--b" id="wsIntroB">SocialWox<i>?</i></span>
+            </h2>
+            <span class="ws__intro-ghost" aria-hidden="true">S</span>
+          </div>
+
+          <!-- Stage 2 — The problem, told as a collision, not a paragraph -->
+          <div class="ws ws--problem" data-stage="2">
+            <h2 class="ws__problem-good" id="wsGood">Good<br>business.</h2>
+            <h2 class="ws__problem-bad" id="wsBad" aria-label="Bad digital presence.">
+              <span>Bad</span><span>digital</span><span>presence.</span>
+            </h2>
+            <p class="ws__problem-sub" id="wsProblemSub">Most businesses that look this good in person don't look anything like it online.</p>
+          </div>
+
+          <!-- Stage 3 — The shift: a real project becomes the environment -->
+          <div class="ws ws--shift" data-stage="3">
+            <p class="ws__shift-label" id="wsShiftLabel">This is what changes</p>
+            <div class="ws__shift-frame showcase-window showcase-window--marchetti" id="wsShiftFrame" role="img" aria-label="Homepage of the Marchetti &amp; Sons website, one of SocialWox's builds">
+              <div class="showcase-chrome"><span></span><span></span><span></span><em>marchettiandsons.com</em></div>
+              <div class="showcase-home">
+                <div class="mh-nav"><b></b><b></b><b></b><b></b></div>
+                <div class="mh-hero"><div class="mh-hero__lines"><i></i><i></i></div><div class="mh-hero__cta"></div></div>
+                <div class="mh-row"><div class="mh-card"></div><div class="mh-card"></div><div class="mh-card"></div></div>
+              </div>
+            </div>
+            <h3 class="ws__shift-headline" id="wsShiftHeadline">A site that earns the business behind it.</h3>
+          </div>
+
+          <!-- Stage 4 — What shapes the work, one dominant word at a time -->
+          <div class="ws ws--values" data-stage="4">
+            <div class="ws__value-stack" id="wsValueStack">
+              <article class="ws__value" data-value="0">
+                <span class="ws__value-num">01</span>
+                <h3 class="ws__value-word">Private.</h3>
+                <p class="ws__value-text">A focused office, not a mass-market agency — a limited number of projects at a time.</p>
+              </article>
+              <article class="ws__value" data-value="1">
+                <span class="ws__value-num">02</span>
+                <h3 class="ws__value-word">Precise.</h3>
+                <p class="ws__value-text">Every visual decision has a purpose — nothing on the page is there by default.</p>
+              </article>
+              <article class="ws__value" data-value="2">
+                <span class="ws__value-num">03</span>
+                <h3 class="ws__value-word">Flexible.</h3>
+                <p class="ws__value-text">We work across industries rather than forcing a business into a predefined template.</p>
+              </article>
+              <article class="ws__value" data-value="3">
+                <span class="ws__value-num">04</span>
+                <h3 class="ws__value-word">Built&nbsp;to&nbsp;last.</h3>
+                <p class="ws__value-text">The site performs as well as it looks — fast, structured, built past launch day.</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Stage 5 — Proof: the actual projects, as objects in the environment -->
+          <div class="ws ws--proof" data-stage="5">
+            <p class="ws__proof-label" id="wsProofLabel">Not concepts. Shipped work.</p>
+            <div class="ws__proof-field" id="wsProofField">
+              <article class="ws__proof ws__proof--a" data-proof="0">
+                <div class="ws__proof-frame showcase-window showcase-window--marchetti" role="img" aria-label="Homepage of the Marchetti &amp; Sons website">
+                  <div class="showcase-chrome"><span></span><span></span><span></span><em>marchettiandsons.com</em></div>
+                  <div class="showcase-home">
+                    <div class="mh-nav"><b></b><b></b><b></b><b></b></div>
+                    <div class="mh-hero"><div class="mh-hero__lines"><i></i><i></i></div><div class="mh-hero__cta"></div></div>
+                    <div class="mh-row"><div class="mh-card"></div><div class="mh-card"></div><div class="mh-card"></div></div>
+                  </div>
+                </div>
+                <p class="ws__proof-caption"><span>Marchetti &amp; Sons</span> — Hospitality, full digital rebuild</p>
+              </article>
+              <article class="ws__proof ws__proof--b" data-proof="1">
+                <div class="ws__proof-frame showcase-window showcase-window--halden" role="img" aria-label="Homepage of the Halden Studio website">
+                  <div class="showcase-chrome"><span></span><span></span><span></span><em>haldenstudio.com</em></div>
+                  <div class="showcase-home">
+                    <div class="mh-nav"><b></b><b></b><b></b><b></b></div>
+                    <div class="mh-plan"><span class="mh-plan__outline"></span><span class="mh-plan__grid"></span></div>
+                    <div class="mh-list"><div class="mh-list__row"></div><div class="mh-list__row"></div><div class="mh-list__row"></div></div>
+                  </div>
+                </div>
+                <p class="ws__proof-caption"><span>Halden Studio</span> — Architecture practice, editorial build</p>
+              </article>
+              <article class="ws__proof ws__proof--c" data-proof="2">
+                <div class="ws__proof-frame showcase-window showcase-window--roan" role="img" aria-label="Homepage of the Roan Supply website">
+                  <div class="showcase-chrome"><span></span><span></span><span></span><em>roansupply.com</em></div>
+                  <div class="showcase-home">
+                    <div class="mh-nav mh-nav--search"><b></b><b></b><b></b></div>
+                    <div class="mh-grid"><div class="mh-tile mh-tile--tall"></div><div class="mh-tile"></div><div class="mh-tile"></div><div class="mh-tile"></div><div class="mh-tile"></div></div>
+                  </div>
+                </div>
+                <p class="ws__proof-caption"><span>Roan Supply</span> — Retail catalogue &amp; storefront</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Stage 6 — The difference: ordinary wipes into a SocialWox build -->
+          <div class="ws ws--difference" data-stage="6">
+            <h3 class="ws__difference-line ws__difference-line--a" id="wsDiffA">We don't just make websites.</h3>
+            <h3 class="ws__difference-line ws__difference-line--b" id="wsDiffB">We create digital experiences.</h3>
+            <div class="ws__difference-compare" id="wsCompare">
+              <div class="ws__difference-before" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="ws__difference-after showcase-window showcase-window--roan" id="wsAfter" role="img" aria-label="A polished SocialWox homepage build, replacing a generic layout">
+                <div class="showcase-chrome"><span></span><span></span><span></span><em>yourbusiness.com</em></div>
+                <div class="showcase-home">
+                  <div class="mh-nav"><b></b><b></b><b></b><b></b></div>
+                  <div class="mh-hero"><div class="mh-hero__lines"><i></i><i></i></div><div class="mh-hero__cta"></div></div>
+                  <div class="mh-row"><div class="mh-card"></div><div class="mh-card"></div><div class="mh-card"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 7 — Final statement: the composition simplifies again -->
+          <div class="ws ws--final" data-stage="7">
+            <h2 class="ws__final">Make your business look as good online as it does in real life.</h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ 06 FINAL CTA ============ -->
+  <section class="cta" id="contact">
+    <span class="cta__watermark" aria-hidden="true">Ascend</span>
+    <div class="cta__frame" aria-hidden="true">
+    </div>
+    <div class="cta__inner">
+      <h2 class="cta__headline reveal-fade">Your business.<br>Our next build.</h2>
+      <p class="cta__sub reveal-fade">Tell us about your business and what you want to build. We'll reply within one business day.</p>
+      <a href="mailto:studio@socialwox.com" class="btn btn--primary btn--lg reveal-fade">Start a project</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="site-footer">
+
+  <!-- Large branded visual — the footer's major final statement -->
+  <div class="footer__visual reveal-fade">
+    <img class="footer__visual-img" src="assets/footer-visual.jpg" alt="A SocialWox client's Art Deco lounge, overlooking a lit city skyline at night" loading="lazy" width="1080" height="607">
+    <div class="footer__visual-scrim" aria-hidden="true"></div>
+
+    <div class="footer__visual-inner">
+      <div class="footer__visual-row">
+        <div class="footer__visual-contact">
+          <p class="footer__visual-label">Start a project</p>
+          <a href="mailto:studio@socialwox.com" class="footer__visual-email">studio@socialwox.com</a>
+          <a href="#contact" class="btn btn--primary footer__visual-btn">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main navigation — clearly separated, evenly weighted columns -->
+  <div class="footer__nav">
+    <div class="footer__nav-grid">
+
+      <div class="footer__col reveal-fade">
+        <p class="footer__col-eyebrow">01</p>
+        <h3 class="footer__col-title">Studio</h3>
+        <nav class="footer__col-links" aria-label="Studio">
+          <a href="#services">Services</a>
+          <a href="#approach">Approach</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer__col reveal-fade">
+        <p class="footer__col-eyebrow">02</p>
+        <h3 class="footer__col-title">Services</h3>
+        <nav class="footer__col-links" aria-label="Services">
+          <a href="#services">Web design &amp; development</a>
+          <a href="#services">Digital presence</a>
+          <a href="#services">Custom digital work</a>
+        </nav>
+      </div>
+
+      <div class="footer__col reveal-fade">
+        <p class="footer__col-eyebrow">03</p>
+        <h3 class="footer__col-title">Connect</h3>
+        <nav class="footer__col-links" aria-label="Connect">
+          <a href="mailto:studio@socialwox.com">Email</a>
+          <a href="#" aria-label="SocialWox on Instagram">Instagram</a>
+          <a href="#" aria-label="SocialWox on LinkedIn">LinkedIn</a>
+        </nav>
+      </div>
+
+      <div class="footer__col reveal-fade">
+        <p class="footer__col-eyebrow">04</p>
+        <h3 class="footer__col-title">Studio hours</h3>
+        <nav class="footer__col-links footer__col-links--static" aria-label="Availability">
+          <span>Mon &ndash; Fri, 9am &ndash; 6pm</span>
+          <span>Replies within one business day</span>
+          <a href="#contact">Start a project &rarr;</a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Legal / closing bar -->
+  <div class="footer__bottom">
+    <p class="footer__bottom-copy">&copy; 2026 SocialWox. All rights reserved.</p>
+    <p class="footer__bottom-built">Built by SocialWox.</p>
+  </div>
+
+</footer>
+
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
